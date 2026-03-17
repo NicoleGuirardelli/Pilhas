@@ -26,16 +26,17 @@ public class PilhaSimples {
             for(int i=0; i <pilha.length-1; i++) {
                 pilha[i]=pilha[i+1];
             }
+            pilha[pilha.length - 1] = null;//evita que o ultimo elemento fique duplicado
             return elementoRemovido;
         }
         return null;
-        //retorna talvez uma execeção
+
     }
 
 
     private boolean estaVazia(){
-        for (int i = 0; i < this.pilha.length; i++) {
-            if (this.pilha[i] != null) {
+        for (String elemento : this.pilha) {
+            if (elemento != null) {
                 return false;
             }
         }
@@ -44,8 +45,8 @@ public class PilhaSimples {
     }
 
     private boolean estaCheia(){
-        for(int i=0;i< pilha.length;i++){
-            if(pilha[i]==null){
+        for (String elemento : pilha) {
+            if (elemento == null) {
                 return false;
             }
         }
@@ -53,9 +54,39 @@ public class PilhaSimples {
         return true;
     }
     public void exibir(){
-        for(int i=0;i< pilha.length;i++){
-            System.out.println(pilha[i]);
+        for (String elemento : pilha) {
+            System.out.println(elemento);
         }
+    }
+    public int contar(){
+        int contar=0;
+        for(int i=0;i<pilha.length;i++){
+            if(pilha[i]!=null){
+                contar++;
+            }else{
+                return contar;
+            }
+
+        }
+        return contar;
+    }
+    public int adicionarVarios(String[] elementos){
+        int adicionado = 0;
+        for (String elemento : elementos) {
+            if (estaCheia()) {
+                break;            // se a pilha estiver cheia sai do laço
+            }
+            empilhar(elemento);
+            adicionado++;
+        }
+
+        return adicionado;
+    }
+    public void limpar(){
+        for(int i=0;i<pilha.length;i++){
+            pilha[i]=null;
+        }
+        System.out.println("Pilha limpa ");
     }
 
 }

@@ -1,7 +1,7 @@
 package Pilhas;
 public class PilhaDinamica {
     private NoInteiro inicio;
-   // private int tamanho=0;
+   
     public PilhaDinamica() {
        this.inicio= new NoInteiro(null);
     }
@@ -17,7 +17,7 @@ public class PilhaDinamica {
     }
 
     public Integer desempilhar(){
-        if(!estaVazia()){
+        if(this.inicio==null&&!estaVazia()){
         Integer elementoRemovido= this.inicio.getConteudo();
         this.inicio=this.inicio.getProx();
         return elementoRemovido;
@@ -43,6 +43,27 @@ public class PilhaDinamica {
            return true;
        }
        return false;
+    }
+    public int contar(){
+        NoInteiro aux= this.inicio;
+        int conta=0;
+        while(aux!=null){
+            conta++;
+            aux= aux.getProx();
+        }
+
+        return conta;
+    }
+
+    public int adicionarVarios(Integer[] elemento){
+        for(Integer element: elemento){
+            this.empilhar(element);
+        }
+        return elemento.length;
+    }
+    public void limpar(){
+        this.inicio= new NoInteiro(null);
+        System.out.println("Pilha limpa");
     }
 
 
